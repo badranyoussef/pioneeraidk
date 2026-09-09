@@ -1,4 +1,5 @@
 import { PioneerOverlay } from "./Overlay";
+import type { LatestRelease } from "@/lib/github-release";
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -516,7 +517,7 @@ export function DemoCta() {
   );
 }
 
-export function Download() {
+export function Download({ release }: { release: LatestRelease }) {
   return (
     <Section>
       <div className="rounded-2xl border border-border bg-surface/40 p-8 md:p-12">
@@ -526,16 +527,20 @@ export function Download() {
             <p className="mt-3 text-sm text-muted-foreground">
               Pioneer-appen kører på sælgerens maskine under opkaldet.
             </p>
+            <p className="mt-2 font-mono text-[11px] text-muted-foreground">
+              Seneste version: {release.version}
+              {release.fallback && " (fallback)"}
+            </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <a
-              href="#download-mac"
+              href={release.macUrl}
               className="rounded-lg border border-border-strong px-5 py-3 text-center text-sm font-medium transition-colors hover:bg-secondary"
             >
               Download til macOS
             </a>
             <a
-              href="#download-windows"
+              href={release.winUrl}
               className="rounded-lg border border-border-strong px-5 py-3 text-center text-sm font-medium transition-colors hover:bg-secondary"
             >
               Download til Windows
