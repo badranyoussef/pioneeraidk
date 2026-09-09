@@ -1,4 +1,5 @@
 import { PioneerOverlay } from "./Overlay";
+import type { LatestRelease } from "@/lib/github-release";
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
