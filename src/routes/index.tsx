@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 import { Nav } from "@/components/site/Nav";
 import {
@@ -14,6 +15,7 @@ import {
   SocialProof,
   Timing,
 } from "@/components/site/sections";
+import { latestReleaseQueryOptions } from "@/lib/github-release";
 
 const title = "Pioneer — real-time salgscoaching i selve samtalen";
 const description =
@@ -30,6 +32,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(latestReleaseQueryOptions()),
   component: Index,
 });
 
