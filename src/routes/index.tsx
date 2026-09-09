@@ -37,6 +37,8 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { data: release } = useSuspenseQuery(latestReleaseQueryOptions());
+
   return (
     <div className="min-h-screen bg-background">
       <Nav />
@@ -50,7 +52,7 @@ function Index() {
         <FeedbackLoop />
         <SocialProof />
         <DemoCta />
-        <Download />
+        <Download release={release} />
       </main>
       <Footer />
     </div>
