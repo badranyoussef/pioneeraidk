@@ -39,6 +39,7 @@ export const getLatestRelease = createServerFn({ method: "GET" }).handler(
   async (): Promise<LatestRelease> => {
     try {
       const res = await fetch(`https://api.github.com/repos/${REPO}/releases/latest`, {
+        cache: "no-store",
         headers: {
           Accept: "application/vnd.github+json",
           "X-GitHub-Api-Version": "2022-11-28",
@@ -88,4 +89,7 @@ export const latestReleaseQueryOptions = () =>
     queryKey: ["pioneer-latest-release"],
     queryFn: () => getLatestRelease(),
     staleTime: 1000 * 60 * 5, // 5 minutes
+    refetchOnMount: "always",
+    refetchOnWindowFocus: true,
+    refetchInterval: 1000 * 60 * 5,
   });
