@@ -21,7 +21,7 @@ const fallbackRelease: LatestRelease = {
   version: FALLBACK_VERSION,
   tag: FALLBACK_TAG,
   macUrl: `${FALLBACK_BASE}/PioneerAI-${FALLBACK_VERSION}-universal.dmg`,
-  winUrl: `${FALLBACK_BASE}/PioneerAI-${FALLBACK_VERSION}-win.zip`,
+  winUrl: `${FALLBACK_BASE}/PioneerAI-Setup-${FALLBACK_VERSION}.exe`,
   fallback: true,
 };
 
@@ -63,7 +63,9 @@ export const getLatestRelease = createServerFn({ method: "GET" }).handler(
       const { tag_name, assets } = parsed.data;
       const version = tag_name.replace(/^v/, "");
       const mac = assets.find((a) => a.name.endsWith("-universal.dmg"));
-      const win = assets.find((a) => a.name.endsWith("-win.zip"));
+      const win =
+        assets.find((a) => a.name.endsWith(".exe") && !a.name.endsWith(".blockmap")) ??
+        assets.find((a) => a.name.endsWith("-win.zip"));
 
       if (!mac || !win) {
         console.warn("Latest release missing expected Pioneer assets; using fallback release");
