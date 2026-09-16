@@ -13,8 +13,8 @@ export const releaseSchema = z.object({
 export type LatestRelease = z.infer<typeof releaseSchema>;
 
 const REPO = "badranyoussef/pioneer-desktop-releases";
-const FALLBACK_VERSION = "0.1.3";
-const FALLBACK_TAG = "v0.1.3";
+const FALLBACK_VERSION = "0.1.5";
+const FALLBACK_TAG = "v0.1.5";
 const FALLBACK_BASE = `https://github.com/${REPO}/releases/download/${FALLBACK_TAG}`;
 
 const fallbackRelease: LatestRelease = {
