@@ -2,24 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
 import { Nav } from "@/components/site/Nav";
-import {
-  DemoCta,
-  Dimensions,
-  Download,
-  FeedbackLoop,
-  Footer,
-  Hero,
-  HowItWorks,
-  Method,
-  PostCall,
-  SocialProof,
-  Timing,
-} from "@/components/site/sections";
+import { Contact, Download, Features, Footer, Hero } from "@/components/site/sections";
 import { latestReleaseQueryOptions } from "@/lib/github-release";
 
-const title = "Pioneer — real-time salgscoaching i selve samtalen";
+const title = "Pioneer | AI Sales Coaching";
 const description =
-  "Pioneer giver sælgere konkrete coaching-hints i realtid — baseret på jeres egen salgsmetodologi — så de kan handle, mens samtalen stadig foregår.";
+  "Real-time AI coaching for better sales conversations. Pioneer coaches reps during the call, based on your own sales methodology.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -44,15 +32,9 @@ function Index() {
       <Nav />
       <main>
         <Hero />
-        <Timing />
-        <Method />
-        <HowItWorks />
-        <Dimensions />
-        <PostCall />
-        <FeedbackLoop />
-        <SocialProof />
-        <DemoCta />
+        <Features />
         <Download release={release} />
+        <Contact />
       </main>
       <Footer />
     </div>
