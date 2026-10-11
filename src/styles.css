@@ -64,6 +64,38 @@
   --border-strong: oklch(1 0 0 / 18%);
   --input: oklch(1 0 0 / 12%);
   --ring: oklch(0.82 0.155 84 / 45%);
+  --grid-line: oklch(1 0 0 / 3.5%);
+  --accent-glow: oklch(0.82 0.155 84 / 45%);
+  color-scheme: dark;
+}
+
+:root.light {
+  --background: oklch(0.985 0.002 260);
+  --foreground: oklch(0.22 0.014 260);
+  --surface: oklch(0.965 0.004 260);
+  --surface-raised: oklch(1 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.014 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.014 260);
+  --primary: oklch(0.53 0.115 72);
+  --primary-foreground: oklch(1 0 0);
+  --accent: oklch(0.53 0.115 72);
+  --accent-foreground: oklch(1 0 0);
+  --accent-soft: oklch(0.75 0.13 84 / 12%);
+  --secondary: oklch(0.935 0.005 260);
+  --secondary-foreground: oklch(0.22 0.014 260);
+  --muted: oklch(0.94 0.004 260);
+  --muted-foreground: oklch(0.47 0.014 260);
+  --destructive: oklch(0.54 0.19 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.22 0.014 260 / 12%);
+  --border-strong: oklch(0.22 0.014 260 / 24%);
+  --input: oklch(0.22 0.014 260 / 18%);
+  --ring: oklch(0.53 0.115 72 / 45%);
+  --grid-line: oklch(0.22 0.014 260 / 4%);
+  --accent-glow: oklch(0.65 0.115 72 / 18%);
+  color-scheme: light;
 }
 
 @layer base {
@@ -89,13 +121,13 @@
 
 @utility grid-faint {
   background-image:
-    linear-gradient(to right, oklch(1 0 0 / 3.5%) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(1 0 0 / 3.5%) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
 @utility glow-accent {
-  box-shadow: 0 0 0 1px var(--accent-soft), 0 24px 60px -30px oklch(0.82 0.155 84 / 45%);
+  box-shadow: 0 0 0 1px var(--accent-soft), 0 24px 60px -30px var(--accent-glow);
 }
 
 @utility rise {

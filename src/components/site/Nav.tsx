@@ -1,6 +1,22 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useLang, useT } from "@/lib/i18n";
+import { Sun, Moon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useTheme } from "@/lib/theme";
+
+function ThemeSwitch() {
+  const { theme, toggleTheme } = useTheme();
+  const t = useT();
+  const label = theme === "dark"
+    ? t({ da: "Skift til lys visning", en: "Switch to light mode" })
+    : t({ da: "Skift til mørk visning", en: "Switch to dark mode" });
+  return (
+    <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label={label} title={label} className="shrink-0 text-muted-foreground">
+      {theme === "dark" ? <Sun aria-hidden="true" /> : <Moon aria-hidden="true" />}
+    </Button>
+  );
+}
 
 function LangSwitch() {
   const { lang, setLang } = useLang();
@@ -47,6 +63,7 @@ export function Nav() {
             </a>
           ))}
           <LangSwitch />
+          <ThemeSwitch />
           <a
             href="/#contact"
             className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
@@ -57,6 +74,7 @@ export function Nav() {
 
         <div className="flex items-center gap-2 md:hidden">
           <LangSwitch />
+          <ThemeSwitch />
           <button
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
