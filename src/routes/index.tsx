@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
 import { Nav } from "@/components/site/Nav";
-import { Contact, Download, Features, Footer, Hero } from "@/components/site/sections";
+import { Contact, Download, Features, Footer, Hero, Timing } from "@/components/site/sections";
 import { latestReleaseQueryOptions } from "@/lib/github-release";
 
 const title = "Pioneer | AI Sales Coaching";
@@ -32,6 +32,7 @@ function Index() {
       <Nav />
       <main>
         <Hero />
+        <Timing />
         <Features />
         <Download release={release} />
         <Contact />
