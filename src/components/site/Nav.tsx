@@ -1,14 +1,36 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
+import { useLang, useT } from "@/lib/i18n";
 
-const links = [
-  { href: "/#features", label: "Product" },
-  { href: "/#download", label: "Download" },
-  { href: "/#contact", label: "Contact" },
-];
+function LangSwitch() {
+  const { lang, setLang } = useLang();
+  return (
+    <div className="flex items-center rounded-lg border border-border p-0.5 font-mono text-[11px]">
+      {(["da", "en"] as const).map((l) => (
+        <button
+          key={l}
+          onClick={() => setLang(l)}
+          aria-pressed={lang === l}
+          className={`rounded-md px-2 py-1 uppercase transition-colors ${
+            lang === l ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          {l}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const t = useT();
+  const links = [
+    { href: "/#features", label: t({ da: "Produkt", en: "Product" }) },
+    { href: "/#download", label: "Download" },
+    { href: "/#contact", label: t({ da: "Kontakt", en: "Contact" }) },
+  ];
+  const cta = t({ da: "Book en demo", en: "Book a demo" });
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
@@ -24,22 +46,26 @@ export function Nav() {
               {l.label}
             </a>
           ))}
+          <LangSwitch />
           <a
             href="/#contact"
             className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
           >
-            Book a demo
+            {cta}
           </a>
         </div>
 
-        <button
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-label="Menu"
-          className="rounded-lg border border-border px-3 py-2 text-sm md:hidden"
-        >
-          {open ? "Close" : "Menu"}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <LangSwitch />
+          <button
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-label="Menu"
+            className="rounded-lg border border-border px-3 py-2 text-sm"
+          >
+            {open ? t({ da: "Luk", en: "Close" }) : "Menu"}
+          </button>
+        </div>
       </nav>
 
       {open && (
@@ -55,7 +81,7 @@ export function Nav() {
               onClick={() => setOpen(false)}
               className="rounded-lg bg-accent px-4 py-2 text-center text-sm font-medium text-accent-foreground"
             >
-              Book a demo
+              {cta}
             </a>
           </div>
         </div>
